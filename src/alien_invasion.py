@@ -50,7 +50,7 @@ class AlienInvasion:
       """Respond to keypresses and mouse events"""
       for event in pygame.event.get():
         if event.type == pygame.QUIT:
-          sys.exit()
+          self._quit_game()
         elif event.type == pygame.MOUSEBUTTONDOWN:
           mouse_pos = pygame.mouse.get_pos()
           self._check_play_button(mouse_pos)
@@ -68,7 +68,7 @@ class AlienInvasion:
       elif event.key == pygame.K_SPACE:
         self._fire_bullet()
       elif event.key == pygame.K_q:
-        sys.exit()
+        self._quit_game()
       elif event.key == pygame.K_p:
         if self.stats.game_active:
           self._start_game(True)
@@ -199,6 +199,11 @@ class AlienInvasion:
       if len(self.bullets) < self.settings.bullets_allowed:
         new_bullet = Bullet(self)
         self.bullets.add(new_bullet)
+
+    def _quit_game(self):
+      """End the game"""
+      self.stats.save_high_score()
+      sys.exit()
 
     def _ship_hit(self):
       """Respond to the ship being hit by an alien."""
