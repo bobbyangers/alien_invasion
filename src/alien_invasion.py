@@ -157,8 +157,7 @@ class AlienInvasion:
       #Determine the number of rows of aliens that fi on the screen.
       ship_height = self.ship.rect.height
       available_space_y = (self.settings.screen_height - (3 * ship_height))
-      number_rows = available_space_y // (2 * alient_height)
-
+      number_rows = (available_space_y // (2 * alient_height))
       for row_number in range(number_rows):
         for alien_number in range(number_aliens_x):
           self._create_alien(alien_number, row_number)
